@@ -1,4 +1,8 @@
-from p1 import combine_first_and_last_digits_from, sum_all_lines, sum_all_lines_in_file
+from p1 import (
+    combine_first_and_last_digits_from,
+    sum_all_lines_in_string,
+    sum_all_lines_in_file,
+)
 from pathlib import Path
 
 
@@ -7,6 +11,15 @@ EXAMPLE_INPUT = """\
 pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet"""
+
+EXAMPLE_INPUT_2 = """\
+two1nine
+eightwothree
+abcone2threexyz
+xtwone3four
+4nineeightseven2
+zoneight234
+7pqrstsixteen"""
 
 
 # Tests need to start with test_ or end with _test, as well as the file they are in, for pytest to automatically recognize them (by default)
@@ -56,7 +69,7 @@ def test_one_digit():
 
 
 def test_multiple_lines_in_string():
-    assert sum_all_lines(EXAMPLE_INPUT) == 142
+    assert sum_all_lines_in_string(EXAMPLE_INPUT) == 142
 
 
 def test_file_input():
@@ -64,3 +77,4 @@ def test_file_input():
     thisdirectory = thisfile.parent
     input_file_path = thisdirectory / "test_input.txt"
     assert sum_all_lines_in_file(input_file_path) == 142
+

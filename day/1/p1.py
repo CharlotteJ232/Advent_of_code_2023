@@ -1,30 +1,42 @@
 # Code for part 1
 
+from pathlib import Path
+
 
 def main():
-    return NotImplementedError()
+    input_file_path = Path(__file__).parent / "input.txt"
+    print(sum_all_lines_in_file(input_file_path))
 
 
-def sum_all_lines(input_string):
-    return sum(
-        combine_first_and_last_digits_from(line) for line in input_string.splitlines()
-    )
+def sum_all_lines_in_string(input_string):
+    input_lines = input_string.splitlines()
+    return sum_all_lines(input_lines)
 
 
 def sum_all_lines_in_file(input_file_name):
     input_file = open(input_file_name)
-    return sum(
-        combine_first_and_last_digits_from(line) for line in input_file.readlines()
-    )
+    input_lines = input_file.readlines()
+    return sum_all_lines(input_lines)
+
+
+def sum_all_lines(input_lines):
+    return sum(combine_first_and_last_digits_from(line) for line in input_lines)
 
 
 def combine_first_and_last_digits_from(line):
     digits = "0123456789"
-    line_filtered = ""
+    find_first_digit_in_line(line, digits)
+
+    return int(
+        find_first_digit_in_line(line, digits)
+        + find_first_digit_in_line(line[::-1], digits)
+    )
+
+
+def find_first_digit_in_line(line, digits):
     for x in line:
         if x in digits:
-            line_filtered += x
-    return int(line_filtered[0] + line_filtered[-1])
+            return x
 
 
 if __name__ == "__main__":
