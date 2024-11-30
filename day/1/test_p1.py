@@ -78,3 +78,10 @@ def test_file_input():
     input_file_path = thisdirectory / "test_input.txt"
     assert sum_all_lines_in_file(input_file_path) == 142
 
+
+def test_word_as_first_digit():
+    assert sum_all_lines_in_string("jksdljonejkdsftwo3lskjf") == 13
+
+
+def test_multiple_lines_with_words():
+    assert sum_all_lines_in_string(EXAMPLE_INPUT_2) == 281
